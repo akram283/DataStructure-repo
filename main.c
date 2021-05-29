@@ -32,27 +32,8 @@ StudNode* create_node(int id,int d,int m,int y,float s,char *fn,char *ln){
     st->next=NULL;
     return st;
 }
-void Add_at_head(list *l,StudNode*s){
-    if (l->head == NULL){       //empty list
-        l->head=s;
-        l->tail=s;
-    }
-    else{
-        s->next=l->head;        //next of new node is the head
-        l->head=s;              //new node becomes the new head
-    }
-}
-void Add_at_tail(list *l,StudNode *s){
-    if (l->head == NULL){       //empty list
-        l->head=s;
-        l->tail=s;
-    }
-    else{
-        l->tail->next=s;        //making the tail points to the node
-        l->tail=l->tail->next;  //the tail takes on step to the new node to make it the last one
-    }
-}
-void Add_at_middle(list *l,StudNode *s){
+
+
     int len=0;
     if (l->head == NULL){       //empty list
         l->head=s;
@@ -71,6 +52,53 @@ void Add_at_middle(list *l,StudNode *s){
         s->next=st->next;       //making the next of the new node points to the next of the middle node
         st->next=s;             //making the next of the middle node points to the new node
     }
+}
+int add(list *l,StudNode *s,int choice){
+    if(choice == 1){
+         if (l->head == NULL){       //empty list
+            l->head=s;
+            l->tail=s;
+            }
+            else{
+                s->next=l->head;        //next of new node is the head
+                l->head=s;              //new node becomes the new head
+            }
+            return 1;
+    }
+    else if (choice ==2){
+        int len=0;
+            if (l->head == NULL){       //empty list
+                l->head=s;
+                l->tail=s;
+            }
+            else{
+                StudNode* st=l->head;
+                while(st != NULL){
+                    len++;
+                    st=st->next;
+                }
+                int count = ((len % 2) == 0) ? (len / 2) :(len + 1) / 2;        //if len is even count is integer
+                st=l->head;
+                while(count-- >1)
+                    st=st->next;
+                s->next=st->next;       //making the next of the new node points to the next of the middle node
+                st->next=s;             //making the next of the middle node points to the new node
+            }
+            return 2;
+    }
+    else if (choice == 3){
+        if (l->head == NULL){       //empty list
+            l->head=s;
+            l->tail=s;
+            }
+            else{
+                l->tail->next=s;        //making the tail points to the node
+                l->tail=l->tail->next;  //the tail takes on step to the new node to make it the last one
+            }
+            return 3;
+    }
+    else
+        return 0;
 }
 void print_list(list *l){
     if(l->head == NULL)
@@ -92,7 +120,7 @@ int main()
 {
     int N;
     list *LinkedList;
-    int id1,d1,m1,y1;
+    int id1,d1,m1,y1,choice;
     float s1;
     char fn1[50],ln1[50];
     LinkedList = (list*) malloc(sizeof(list));
@@ -140,8 +168,15 @@ int main()
         printf("Enter student's name: ");
         scanf("%s %s",fn1,ln1);
         StudNode *stud=create_node(id1,d1,m1,y1,s1,fn1,ln1);
-        Add_at_tail(LinkedList,stud);
+        printf("1-add first\n 2-add last\n 3-add at middle\n");
+        scanf("%d",&choice);
+        while(!add(LinkedList,stud,choice)){
+            printf("enter a valid number : ");
+            scanf("%d",&choice);
+        }
+
     }
+
     print_list(LinkedList);
     return 0;
 }
