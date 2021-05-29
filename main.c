@@ -34,25 +34,6 @@ StudNode* create_node(int id,int d,int m,int y,float s,char *fn,char *ln){
 }
 
 
-    int len=0;
-    if (l->head == NULL){       //empty list
-        l->head=s;
-        l->tail=s;
-    }
-    else{
-        StudNode* st=l->head;
-        while(st != NULL){
-            len++;
-            st=st->next;
-        }
-        int count = ((len % 2) == 0) ? (len / 2) :(len + 1) / 2;        //if len is even count is integer
-        st=l->head;
-        while(count-- >1)
-            st=st->next;
-        s->next=st->next;       //making the next of the new node points to the next of the middle node
-        st->next=s;             //making the next of the middle node points to the new node
-    }
-}
 int add(list *l,StudNode *s,int choice){
     if(choice == 1){
          if (l->head == NULL){       //empty list
