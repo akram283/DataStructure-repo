@@ -149,7 +149,7 @@ void linkedlist()
         printf("Enter student's name: ");
         scanf("%s %s",fn1,ln1);
         StudNode *stud=create_node(id1,d1,m1,y1,s1,fn1,ln1);
-        printf("1-add first\n 2-add last\n 3-add at middle\n");
+        printf("1-add first\n 2-add at middle\n 3-add last\n");
         scanf("%d",&choice);
         while(!add(LinkedList,stud,choice)){
             printf("enter a valid number : ");
