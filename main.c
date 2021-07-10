@@ -1,3 +1,12 @@
+/*
+Abdelrahman Ahmed Awaad         sec 2           Bn    40
+Abdelrahman Akram Farag         sec 2           Bn     41
+Abdullah Essam                  sec 2           Bn    53
+*/
+
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -179,7 +188,7 @@ for(i=N-1;i>=0;i--){
 i=0;
 
 printf("Enter the name of new student: ");
-    scanf("%s",(*arr)->name);
+    scanf("%s %s",(*arr)->name);
     printf("Enter the ID of new student: ");
     scanf("%d",&(*arr)->ID);
     printf("Enter the birth day,month and year of new student respectively: ");
